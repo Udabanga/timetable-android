@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), AdminHomeActivity.class);
                     startActivity(intent);
                 }
-                else if(password.equalsIgnoreCase("lecturer")){
+                else if(email.equalsIgnoreCase("lecturer")){
                     Intent intent = new Intent(getBaseContext(), LecturerHomeActivity.class);
                     startActivity(intent);
                 }
