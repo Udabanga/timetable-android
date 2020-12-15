@@ -13,6 +13,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +28,7 @@
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
                     app:title="Admin"
-                    app:titleTextColor="@color/cardview_light_background"/>
+                    app:titleTextColor="@color/cardview_light_background" />
             </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -42,25 +43,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="88dp"
-                android:text="Admin Page"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="124dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/cardView4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
                 <ImageView
                     android:id="@+id/batchImage"
@@ -82,10 +72,10 @@
                 android:id="@+id/cardView4"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="124dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView3"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
                 <ImageView
                     android:id="@+id/lecturerImage"

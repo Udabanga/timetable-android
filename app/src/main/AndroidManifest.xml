@@ -20,6 +20,9 @@
         <activity
             android:name=".LecturerHomeActivity">
         </activity>
+        <activity
+            android:name=".BatchScheduleActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

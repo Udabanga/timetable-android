@@ -1,6 +1,28 @@
 <resources>
     <string name="app_name">Timetable.io</string>
     <string name="title_activity_login">LoginActivity</string>
+
+    
+    <string-array name="student_schedule_module">
+        <item>EEA</item>
+        <item>ISEI</item>
+        <item>CNA</item>
+        <item>WMAD</item>
+    </string-array>
+
+    <string-array name="student_schedule_lecturer">
+        <item>Mr Samantha</item>
+        <item>Mrs Neha</item>
+        <item>Prof Hiran</item>
+        <item>Dr Sudam</item>
+    </string-array>
+
+    <string-array name="faculty">
+        <item>Business</item>
+        <item>Computing</item>
+        <item>Law</item>
+    </string-array>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

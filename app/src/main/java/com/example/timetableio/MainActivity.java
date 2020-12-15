@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "View Batch Timetable", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), BatchScheduleActivity.class);
+                startActivity(intent);
             }
         });
 
