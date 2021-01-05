@@ -23,6 +23,12 @@
         <item>Law</item>
     </string-array>
 
+    <string-array name="batch">
+        <item>3-OCT-1-COM-2020</item>
+        <item>3-OCT-2-COM-2020</item>
+        <item>2-OCT-1-COM-2020</item>
+    </string-array>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

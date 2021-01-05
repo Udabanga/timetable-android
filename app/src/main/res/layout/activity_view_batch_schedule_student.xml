@@ -31,32 +31,52 @@
         android:id="@+id/datePickerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     <TextView
         android:id="@+id/selectedDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="SelectedDate"
-        app:layout_constraintStart_toEndOf="@+id/datePickerButton"
-        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+        app:layout_constraintEnd_toEndOf="@+id/datePickerButton"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerButton" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studentBatchRecyclerView"
         android:layout_width="0dp"
         android:layout_height="607dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateText" />
+
+    <Spinner
+        android:id="@+id/batchSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:entries="@array/batch"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Batch No"
+        app:layout_constraintStart_toStartOf="@+id/batchSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,7 @@
                     android:theme="?attr/actionBarTheme"
                     app:title="Admin"
                     app:titleTextColor="@color/cardview_light_background" />
+
             </com.google.android.material.appbar.AppBarLayout>
 
 
