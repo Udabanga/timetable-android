@@ -17,33 +17,15 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/dayImageView"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/moduleTextView"
             app:srcCompat="@drawable/monday" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/dayTextView"-->
-<!--            android:layout_width="72dp"-->
-<!--            android:layout_height="72dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            android:fontFamily="sans-serif-condensed"-->
-<!--            android:gravity="center"-->
-<!--            android:text="MON"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textSize="30sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/moduleTextView"
@@ -54,33 +36,117 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Module"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/startTimeTextView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/LecturerTextView"
+            android:id="@+id/lecturerTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="Lecturer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/imageView" />
+            app:layout_constraintEnd_toStartOf="@+id/startTimeTextView"
+            app:layout_constraintStart_toEndOf="@+id/dayImageView"
+            app:layout_constraintTop_toBottomOf="@+id/moduleTextView" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/startTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="08:00-09:00"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="startTime"
+            app:layout_constraintBottom_toTopOf="@+id/endTimeTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/dayImageView"
+            app:layout_constraintTop_toBottomOf="@+id/dayImageView" />
+
+        <TextView
+            android:id="@+id/endTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="endTime"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startTimeTextView" />
+
+        <TextView
+            android:id="@+id/classroomTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Classroom"
+            app:layout_constraintEnd_toEndOf="@+id/lecturerTextView"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout3" />
+
+        <TextView
+            android:id="@+id/batchListTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Batch List"
+            app:layout_constraintEnd_toEndOf="@+id/classroomTextView"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/classroomTextView" />
+
+        <TextView
+            android:id="@+id/toTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toTopOf="@+id/endTimeTextView"
+            app:layout_constraintEnd_toEndOf="@+id/startTimeTextView"
+            app:layout_constraintStart_toStartOf="@+id/startTimeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/startTimeTextView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dayImageView"
+            app:layout_constraintStart_toEndOf="@+id/dayImageView"
+            app:layout_constraintTop_toBottomOf="@+id/lecturerTextView">
+
+            <TextView
+                android:id="@+id/classroomLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Classroom"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintBottom_toTopOf="@+id/batchesLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/batchesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Batches"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/classroomLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

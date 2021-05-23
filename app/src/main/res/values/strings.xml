@@ -2,20 +2,20 @@
     <string name="app_name">Timetable.io</string>
     <string name="title_activity_login">LoginActivity</string>
 
-    
-    <string-array name="student_schedule_module">
-        <item>EEA</item>
-        <item>ISEI</item>
-        <item>CNA</item>
-        <item>WMAD</item>
-    </string-array>
 
-    <string-array name="student_schedule_lecturer">
-        <item>Mr Samantha</item>
-        <item>Mrs Neha</item>
-        <item>Prof Hiran</item>
-        <item>Dr Sudam</item>
-    </string-array>
+<!--    <string-array name="student_schedule_module">-->
+<!--        <item>EEA</item>-->
+<!--        <item>ISEI</item>-->
+<!--        <item>CNA</item>-->
+<!--        <item>WMAD</item>-->
+<!--    </string-array>-->
+
+<!--    <string-array name="student_schedule_lecturer">-->
+<!--        <item>Mr Samantha</item>-->
+<!--        <item>Mrs Neha</item>-->
+<!--        <item>Prof Hiran</item>-->
+<!--        <item>Dr Sudam</item>-->
+<!--    </string-array>-->
 
     <string-array name="faculty">
         <item>Business</item>
@@ -23,11 +23,11 @@
         <item>Law</item>
     </string-array>
 
-    <string-array name="batch">
-        <item>3-OCT-1-COM-2020</item>
-        <item>3-OCT-2-COM-2020</item>
-        <item>2-OCT-1-COM-2020</item>
-    </string-array>
+<!--    <string-array name="batch">-->
+<!--        <item>3-OCT-1-COM-2020</item>-->
+<!--        <item>3-OCT-2-COM-2020</item>-->
+<!--        <item>2-OCT-1-COM-2020</item>-->
+<!--    </string-array>-->
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -42,4 +42,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="button">Button</string>
+    <string name="selecteddate">SelectedDate</string>
+    <string name="batch_no">Batch No</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.timetableio;
+package com.example.timetableio.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.timetableio.R;
 
 public class MainActivity extends AppCompatActivity {
     private TextView loginText;
@@ -37,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "View Batch Timetable", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getBaseContext(), BatchScheduleActivity.class);
+//                Intent intent = new Intent(getBaseContext(), BatchScheduleActivity.class);
+                Intent intent = new Intent(getBaseContext(), ViewBatchTimetableActivity.class);
+
                 startActivity(intent);
             }
         });

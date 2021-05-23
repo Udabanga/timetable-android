@@ -41,15 +41,15 @@
                 android:layout_marginTop="32dp"
                 android:text="Schedules "
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+                app:layout_constraintTop_toBottomOf="@+id/classroomsCardView" />
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
+                android:id="@+id/batchesCardView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardView4"
+                app:layout_constraintEnd_toStartOf="@+id/lecturersCardView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
@@ -70,12 +70,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
+                android:id="@+id/lecturersCardView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardView3"
+                app:layout_constraintStart_toEndOf="@+id/batchesCardView"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
                 <ImageView
@@ -94,13 +94,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
+                android:id="@+id/classroomsCardView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardView6"
+                app:layout_constraintEnd_toStartOf="@+id/modulesClassView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3">
+                app:layout_constraintTop_toBottomOf="@+id/batchesCardView">
 
                 <ImageView
                     android:id="@+id/classroomImage"
@@ -118,13 +118,13 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView6"
+                android:id="@+id/modulesClassView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cardView7"
-                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+                app:layout_constraintStart_toEndOf="@+id/classroomsCardView"
+                app:layout_constraintTop_toBottomOf="@+id/lecturersCardView">
 
                 <ImageView
                     android:id="@+id/moduleImage"

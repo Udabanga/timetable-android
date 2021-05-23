@@ -1,9 +1,11 @@
-package com.example.timetableio;
+package com.example.timetableio.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.timetableio.R;
 
 public class LecturerHomeActivity extends AppCompatActivity {
     @Override
