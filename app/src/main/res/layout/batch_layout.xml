@@ -24,35 +24,36 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Building"
+            android:text="Batch Code"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/idTextView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginBottom="9dp"-->
-<!--            android:text="ID"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/tableLayout"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/idTextView"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginBottom="9dp"-->
+        <!--            android:text="ID"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/tableLayout"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:stretchColumns="*"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/batchCodeTextView">
+            app:layout_constraintTop_toBottomOf="@+id/batchFacultyTextView">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -61,28 +62,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/batchCodeTextView">
 
                 <TextView
-                    android:id="@+id/semesterLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ID" />
-
-                <TextView
                     android:id="@+id/YearLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Floor" />
+                    android:text="Year"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
                 <TextView
-                    android:id="@+id/roomNumberLabel"
+                    android:id="@+id/semesterLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Room No" />
+                    android:text="Semester"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-                <TextView
-                    android:id="@+id/typeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type" />
             </TableRow>
 
             <TableRow
@@ -90,31 +82,27 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/semesterTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ID" />
-
-                <TextView
                     android:id="@+id/yearTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Floor" />
+                    android:text="Year" />
 
                 <TextView
-                    android:id="@+id/roomNumberTextView"
+                    android:id="@+id/semesterTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Room No" />
+                    android:text="Semester" />
 
-                <TextView
-                    android:id="@+id/typeTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type" />
             </TableRow>
         </TableLayout>
 
+        <TextView
+            android:id="@+id/batchFacultyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Faculty"
+            app:layout_constraintStart_toStartOf="@+id/batchCodeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/batchCodeTextView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

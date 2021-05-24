@@ -2,17 +2,14 @@ package com.example.timetableio.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timetableio.activity.ModuleAddEditActivity;
@@ -20,8 +17,6 @@ import com.example.timetableio.model.Module;
 import com.example.timetableio.R;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ViewHolder> {
     private Context context;
@@ -59,12 +54,11 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener {
 
         TextView id, module;
-        CardView card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.moduleIDTextView);
-            module = itemView.findViewById(R.id.moduleTextView);
+            id = itemView.findViewById(R.id.semesterTextView);
+            module = itemView.findViewById(R.id.batchCodeTextView);
 
             itemView.setOnLongClickListener(this);
         }
@@ -84,14 +78,17 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ViewHolder
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
+            Intent intent = new Intent(context, ModuleAddEditActivity.class);
             switch (menuItem.getItemId()){
                 case (R.id.action_delete):
-                    Log.d(TAG, "onMenuItemClick: action_delete"+ moduleList.get(getAdapterPosition()));
+
+                    intent.putExtra("SELECTION", "Delete");
+                    intent.putExtra("MODULE_ID", String.valueOf(moduleList.get(getAdapterPosition()).getId()));
+                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
 
                     return true;
                 case (R.id.action_edit):
-                    Log.d(TAG, "onMenuItemClick: action_edit"+ getAdapterPosition());
-                    Intent intent = new Intent(context, ModuleAddEditActivity.class);
                     intent.putExtra("SELECTION", "Edit");
                     intent.putExtra("MODULE_ID", String.valueOf(moduleList.get(getAdapterPosition()).getId()));
                     intent.putExtra("MODULE_NAME", String.valueOf(moduleList.get(getAdapterPosition()).getModuleName()));

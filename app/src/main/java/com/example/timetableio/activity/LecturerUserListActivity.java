@@ -41,9 +41,9 @@ public class LecturerUserListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_list);
-        recyclerView = findViewById(R.id.batchRecyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         userList = new ArrayList<>();
-        addButton = (Button) findViewById(R.id.datePickerButton);
+        addButton = (Button) findViewById(R.id.createButton);
 
         requestUsers();
 

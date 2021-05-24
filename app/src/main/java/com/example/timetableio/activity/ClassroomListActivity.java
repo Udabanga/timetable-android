@@ -1,7 +1,9 @@
 package com.example.timetableio.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -36,11 +38,22 @@ public class ClassroomListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom_list);
-        recyclerView = findViewById(R.id.batchRecyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         classroomList = new ArrayList<>();
-        addButton = (Button) findViewById(R.id.datePickerButton);
+        addButton = (Button) findViewById(R.id.createButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ClassroomAddEditActivity.class);
+                intent.putExtra("SELECTION", "Add");
+                startActivity(intent);
+                finish();
+            }
+        });
 
         requestClassrooms();
+
 
 
     }

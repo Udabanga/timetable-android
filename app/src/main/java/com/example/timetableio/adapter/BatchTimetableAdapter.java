@@ -99,7 +99,7 @@ public class BatchTimetableAdapter extends RecyclerView.Adapter<BatchTimetableAd
             startTime = itemView.findViewById(R.id.startTimeTextView);
             endTime = itemView.findViewById(R.id.endTimeTextView);
             classroom = itemView.findViewById(R.id.classroomTextView);
-            module = itemView.findViewById(R.id.moduleTextView);
+            module = itemView.findViewById(R.id.batchCodeTextView);
             user = itemView.findViewById(R.id.lecturerTextView);
             batches = itemView.findViewById(R.id.batchListTextView);
             dateImage = itemView.findViewById(R.id.dayImageView);

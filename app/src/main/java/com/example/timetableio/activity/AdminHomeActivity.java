@@ -33,7 +33,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         batchesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), BatchActivity.class);
+                Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                 startActivity(intent);
             }
         });

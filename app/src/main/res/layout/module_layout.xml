@@ -16,17 +16,17 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/moduleIDTextView"
+            android:id="@+id/semesterTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="ID"
-            app:layout_constraintBottom_toBottomOf="@+id/moduleTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/batchCodeTextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/moduleTextView" />
+            app:layout_constraintTop_toTopOf="@+id/batchCodeTextView" />
 
         <TextView
-            android:id="@+id/moduleTextView"
+            android:id="@+id/batchCodeTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -39,7 +39,7 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/moduleIDTextView"
+            app:layout_constraintStart_toEndOf="@+id/semesterTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
 

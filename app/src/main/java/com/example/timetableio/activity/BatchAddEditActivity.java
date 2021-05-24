@@ -19,43 +19,53 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.timetableio.R;
+import com.example.timetableio.model.Batch;
+import com.example.timetableio.model.Schedule;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.content.ContentValues.TAG;
 
-public class ModuleAddEditActivity extends AppCompatActivity {
+public class BatchAddEditActivity extends AppCompatActivity {
     private Button submitButton;
-    private EditText inputModuleName;
+    private EditText inputBatchCode, inputFaculty, inputSemester, inputYear;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_module_add_edit);
+        setContentView(R.layout.activity_batch_add_edit);
         String selection = getIntent().getStringExtra("SELECTION");
-        String moduleIDEdit = getIntent().getStringExtra("MODULE_ID");
-        String moduleNameEdit = getIntent().getStringExtra("MODULE_NAME");
+        String batchIDEdit = getIntent().getStringExtra("BATCH_ID");
+        String batchBatchCodeEdit = getIntent().getStringExtra("BATCH_BATCH_CODE");
+        String batchFacultyEdit = getIntent().getStringExtra("BATCH_FACULTY");
+        String batchSemesterEdit = getIntent().getStringExtra("BATCH_SEMESTER");
+        String batchYearEdit = getIntent().getStringExtra("BATCH_YEAR");
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         submitButton = (Button) findViewById(R.id.batchSubmitButton);
-        inputModuleName = (EditText) findViewById(R.id.batchCode);
+        inputBatchCode = (EditText) findViewById(R.id.batchCode);
+        inputFaculty = (EditText) findViewById(R.id.faculty);
+        inputSemester = (EditText) findViewById(R.id.semester);
+        inputYear = (EditText) findViewById(R.id.year);
 
         if (selection.equals("Delete")) {
             JSONObject obj = new JSONObject();
             try {
-                obj.put("id", Long.parseLong(moduleIDEdit));
+                obj.put("id", Long.parseLong(batchIDEdit));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, "http://192.168.8.104:8080/api/modules/" + moduleIDEdit,
+            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, "http://192.168.8.104:8080/api/batches/" + batchIDEdit,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(ModuleAddEditActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
+                            Toast.makeText(BatchAddEditActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -63,8 +73,8 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(ModuleAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
+                            Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                             startActivity(intent);
                             finish();
                             Log.d(TAG, error.toString());
@@ -75,27 +85,37 @@ public class ModuleAddEditActivity extends AppCompatActivity {
         }
 
         if (selection.equals("Edit")) {
-            inputModuleName.setText(moduleNameEdit);
+            inputBatchCode.setText(batchBatchCodeEdit);
+            inputFaculty.setText(batchFacultyEdit);
+            inputSemester.setText(batchSemesterEdit);
+            inputYear.setText(batchYearEdit);
+
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String moduleName = inputModuleName.getText().toString();
+                    String batchCode = inputBatchCode.getText().toString();
+                    String faculty = inputFaculty.getText().toString();
+                    String semester = inputSemester.getText().toString();
+                    String year = inputYear.getText().toString();
 
                     JSONObject obj = new JSONObject();
                     try {
-                        obj.put("moduleName", moduleName);
+                        obj.put("batchCode", batchCode);
+                        obj.put("faculty", faculty);
+                        obj.put("semester", semester);
+                        obj.put("year", year);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.PUT, "http://192.168.8.104:8080/api/modules/"+ moduleIDEdit, obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.PUT, "http://192.168.8.104:8080/api/batches/"+ batchIDEdit, obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(ModuleAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
+                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -104,7 +124,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     // TODO: Handle error
-                                    Toast.makeText(ModuleAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                     queue.add(jsonObjectRequest);
@@ -112,26 +132,37 @@ public class ModuleAddEditActivity extends AppCompatActivity {
             });
         }
         else {
+            inputBatchCode.setText(batchBatchCodeEdit);
+            inputFaculty.setText(batchFacultyEdit);
+            inputSemester.setText(batchSemesterEdit);
+            inputYear.setText(batchYearEdit);
+
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String moduleName = inputModuleName.getText().toString();
+                    String batchCode = inputBatchCode.getText().toString();
+                    String faculty = inputFaculty.getText().toString();
+                    String semester = inputSemester.getText().toString();
+                    String year = inputYear.getText().toString();
 
                     JSONObject obj = new JSONObject();
                     try {
-                        obj.put("moduleName", moduleName);
+                        obj.put("batchCode", batchCode);
+                        obj.put("faculty", faculty);
+                        obj.put("semester", semester);
+                        obj.put("year", year);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, "http://192.168.8.104:8080/api/modules", obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, "http://192.168.8.104:8080/api/batches", obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(ModuleAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
+                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -140,7 +171,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     // TODO: Handle error
-                                    Toast.makeText(ModuleAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                     queue.add(jsonObjectRequest);

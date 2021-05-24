@@ -23,6 +23,12 @@
         <item>Law</item>
     </string-array>
 
+    <string-array name="classroom_types">
+        <item>Class</item>
+        <item>Lab</item>
+        <item>Auditorium</item>
+    </string-array>
+
 <!--    <string-array name="batch">-->
 <!--        <item>3-OCT-1-COM-2020</item>-->
 <!--        <item>3-OCT-2-COM-2020</item>-->

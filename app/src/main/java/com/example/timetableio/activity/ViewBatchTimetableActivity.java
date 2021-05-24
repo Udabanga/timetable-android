@@ -56,11 +56,11 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_batch_schedule_student);
-        recyclerView = findViewById(R.id.batchRecyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         scheduleList = new ArrayList<>();
         requestSchedules();
 
-        datePickerButton = findViewById(R.id.datePickerButton);
+        datePickerButton = findViewById(R.id.createButton);
         selectDate = findViewById(R.id.selectedDateText);
 
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("IST"));

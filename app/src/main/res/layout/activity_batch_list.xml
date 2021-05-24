@@ -28,7 +28,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/datePickerButton"
+        android:id="@+id/createButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/batchRecyclerView"
+        android:id="@+id/recyclerView"
         android:layout_width="397dp"
         android:layout_height="545dp"
         android:layout_marginStart="8dp"
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/createButton" />
 
     <!--        android:entries="@array/batch"-->
 

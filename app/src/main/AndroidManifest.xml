@@ -19,10 +19,13 @@
             android:name=".activity.AdminHomeActivity">
         </activity>
         <activity
-            android:name=".activity.ClassroomListActivity">
+            android:name=".activity.ClassroomListActivity" android:noHistory="true">
         </activity>
         <activity
-            android:name=".activity.ModuleListActivity">
+            android:name=".activity.ClassroomAddEditActivity">
+        </activity>
+        <activity
+            android:name=".activity.ModuleListActivity" android:noHistory="true">
         </activity>
         <activity
             android:name=".activity.ModuleAddEditActivity">
@@ -34,7 +37,10 @@
             android:name=".activity.LecturerHomeActivity">
         </activity>
         <activity
-            android:name=".activity.BatchActivity">
+            android:name=".activity.BatchListActivity" android:noHistory="true">
+        </activity>
+        <activity
+            android:name=".activity.BatchAddEditActivity">
         </activity>
         <activity
             android:name=".activity.ViewBatchTimetableActivity">
