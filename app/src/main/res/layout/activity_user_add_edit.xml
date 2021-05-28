@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPersonName" />
         </TableRow>
 
     </TableLayout>
@@ -120,7 +120,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <CheckBox
-                android:id="@+id/checkBox6"
+                android:id="@+id/adminCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Admin" />
@@ -138,7 +138,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <CheckBox
-                android:id="@+id/checkBox7"
+                android:id="@+id/lecturerCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lecturer" />
@@ -156,7 +156,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <CheckBox
-                android:id="@+id/checkBox8"
+                android:id="@+id/userCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User" />
@@ -166,7 +166,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/batchSubmitButton"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

@@ -19,53 +19,50 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.timetableio.R;
-import com.example.timetableio.api.API_BASE_URL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import static android.content.ContentValues.TAG;
 import static com.example.timetableio.api.API_BASE_URL.baseURL;
 
-public class BatchAddEditActivity extends AppCompatActivity {
+public class LecturerUserAddEditActivity extends AppCompatActivity {
     private Button submitButton;
-    private EditText inputBatchCode, inputFaculty, inputSemester, inputYear;
-    private API_BASE_URL apiBaseUrl;
+    private EditText inputUserName, inputUserEmail, inputUserPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_batch_add_edit);
+        setContentView(R.layout.activity_user_add_edit);
         String selection = getIntent().getStringExtra("SELECTION");
-        String batchIDEdit = getIntent().getStringExtra("BATCH_ID");
-        String batchBatchCodeEdit = getIntent().getStringExtra("BATCH_BATCH_CODE");
-        String batchFacultyEdit = getIntent().getStringExtra("BATCH_FACULTY");
-        String batchSemesterEdit = getIntent().getStringExtra("BATCH_SEMESTER");
-        String batchYearEdit = getIntent().getStringExtra("BATCH_YEAR");
+        String userIDEdit = getIntent().getStringExtra("USER_ID");
+        String userEmailEdit = getIntent().getStringExtra("USER_EMAIL");
+        String userNameEdit = getIntent().getStringExtra("USER_NAME");
+        String userPasswordEdit = getIntent().getStringExtra("USER_PASSWORD");
+        String userRolesEdit = getIntent().getStringExtra("USER_ROLES");
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         submitButton = (Button) findViewById(R.id.submitButton);
-        inputBatchCode = (EditText) findViewById(R.id.batchCode);
-        inputFaculty = (EditText) findViewById(R.id.faculty);
-        inputSemester = (EditText) findViewById(R.id.semester);
-        inputYear = (EditText) findViewById(R.id.year);
+        inputUserName = (EditText) findViewById(R.id.name);
+        inputUserEmail = (EditText) findViewById(R.id.email);
+        inputUserPassword = (EditText) findViewById(R.id.password);
 
         if (selection.equals("Delete")) {
             JSONObject obj = new JSONObject();
             try {
-                obj.put("id", Long.parseLong(batchIDEdit));
+                obj.put("id", Long.parseLong(userIDEdit));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, baseURL+"api/batches/" + batchIDEdit,
+            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, baseURL+"api/auth/users/" + userIDEdit,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(BatchAddEditActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
+                            Toast.makeText(LecturerUserAddEditActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -73,8 +70,8 @@ public class BatchAddEditActivity extends AppCompatActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
+                            Toast.makeText(LecturerUserAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                             startActivity(intent);
                             finish();
                             Log.d(TAG, error.toString());
@@ -85,37 +82,45 @@ public class BatchAddEditActivity extends AppCompatActivity {
         }
 
         if (selection.equals("Edit")) {
-            inputBatchCode.setText(batchBatchCodeEdit);
-            inputFaculty.setText(batchFacultyEdit);
-            inputSemester.setText(batchSemesterEdit);
-            inputYear.setText(batchYearEdit);
-
+            inputUserName.setText(userNameEdit);
+            inputUserEmail.setText(userEmailEdit);
+            inputUserPassword.setText(userPasswordEdit);
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String batchCode = inputBatchCode.getText().toString();
-                    String faculty = inputFaculty.getText().toString();
-                    String semester = inputSemester.getText().toString();
-                    String year = inputYear.getText().toString();
+                    String userName = inputUserName.getText().toString();
+                    String userEmail = inputUserEmail.getText().toString();
+                    String userPassword = inputUserPassword.getText().toString();
 
                     JSONObject obj = new JSONObject();
-                    try {
-                        obj.put("batchCode", batchCode);
-                        obj.put("faculty", faculty);
-                        obj.put("semester", semester);
-                        obj.put("year", year);
+                    if(userPassword == null) {
+                        try {
+                            obj.put("userName", userName);
+                            obj.put("userEmail", userEmail);
+//                        obj.put("userPassword", userPassword);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else{
+                        try {
+                            obj.put("userName", userName);
+                            obj.put("userEmail", userEmail);
+                            obj.put("userPassword", userPassword);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.PUT, baseURL+"api/batches/"+ batchIDEdit, obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.PUT, baseURL+ "api/auth/users/"+ userIDEdit, obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
+                                    Toast.makeText(LecturerUserAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -124,7 +129,7 @@ public class BatchAddEditActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     // TODO: Handle error
-                                    Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LecturerUserAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                     queue.add(jsonObjectRequest);
@@ -132,37 +137,30 @@ public class BatchAddEditActivity extends AppCompatActivity {
             });
         }
         else {
-            inputBatchCode.setText(batchBatchCodeEdit);
-            inputFaculty.setText(batchFacultyEdit);
-            inputSemester.setText(batchSemesterEdit);
-            inputYear.setText(batchYearEdit);
-
             submitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String batchCode = inputBatchCode.getText().toString();
-                    String faculty = inputFaculty.getText().toString();
-                    String semester = inputSemester.getText().toString();
-                    String year = inputYear.getText().toString();
+                    String userName = inputUserName.getText().toString();
+                    String userEmail = inputUserEmail.getText().toString();
+                    String userPassword = inputUserPassword.getText().toString();
 
                     JSONObject obj = new JSONObject();
                     try {
-                        obj.put("batchCode", batchCode);
-                        obj.put("faculty", faculty);
-                        obj.put("semester", semester);
-                        obj.put("year", year);
+                        obj.put("userName", userName);
+                        obj.put("userEmail", userEmail);
+                        obj.put("userPassword", userPassword);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, baseURL+ "api/batches", obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, baseURL+ "api/auth/users", obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
+                                    Toast.makeText(LecturerUserAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -171,7 +169,7 @@ public class BatchAddEditActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     // TODO: Handle error
-                                    Toast.makeText(BatchAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LecturerUserAddEditActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                     queue.add(jsonObjectRequest);

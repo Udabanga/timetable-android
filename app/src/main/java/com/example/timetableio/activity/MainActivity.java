@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         viewLecturerTimetableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "View Lecturer Timetable", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), ViewLecturerTimetableActivity.class);
+
+                startActivity(intent);
             }
         });
     }

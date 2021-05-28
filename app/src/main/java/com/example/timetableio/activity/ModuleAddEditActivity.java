@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.content.ContentValues.TAG;
+import static com.example.timetableio.api.API_BASE_URL.baseURL;
 
 public class ModuleAddEditActivity extends AppCompatActivity {
     private Button submitButton;
@@ -39,7 +40,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        submitButton = (Button) findViewById(R.id.batchSubmitButton);
+        submitButton = (Button) findViewById(R.id.submitButton);
         inputModuleName = (EditText) findViewById(R.id.batchCode);
 
         if (selection.equals("Delete")) {
@@ -50,7 +51,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, "http://192.168.8.104:8080/api/modules/" + moduleIDEdit,
+            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, baseURL+"api/modules/" + moduleIDEdit,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -90,7 +91,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.PUT, "http://192.168.8.104:8080/api/modules/"+ moduleIDEdit, obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.PUT, baseURL+"api/modules/"+ moduleIDEdit, obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
@@ -126,7 +127,7 @@ public class ModuleAddEditActivity extends AppCompatActivity {
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, "http://192.168.8.104:8080/api/modules", obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, baseURL+ "api/modules", obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {

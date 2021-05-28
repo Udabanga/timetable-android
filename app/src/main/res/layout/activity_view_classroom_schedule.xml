@@ -22,7 +22,7 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:title="Batch Schedule"
+            app:title="Clasroom Schedule"
             app:titleTextColor="@color/cardview_light_background"></androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toEndOf="@+id/Classroom"
         app:layout_constraintTop_toTopOf="@+id/Classroom" />
 
@@ -76,8 +76,8 @@
         android:layout_height="wrap_content"
         android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     <TextView
         android:id="@+id/selectedDates"
@@ -101,7 +101,7 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--<androidx.recyclerview.widget.RecyclerView-->
-<!--android:id="@+id/studentBatchRecyclerView"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content" />-->
+    <!--<androidx.recyclerview.widget.RecyclerView-->
+    <!--android:id="@+id/studentBatchRecyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->

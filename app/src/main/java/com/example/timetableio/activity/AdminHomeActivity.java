@@ -13,7 +13,7 @@ import com.example.timetableio.R;
 
 public class AdminHomeActivity extends AppCompatActivity {
     private Toolbar toolbar_admin;
-    private CardView batchesCardView, lecturersCardView, classroomsCardView, modulesCardView;
+    private CardView batchesCardView, lecturersCardView, classroomsCardView, modulesCardView, batchLongCardView, lecturerLongCardView, classroomLongCardView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +21,13 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         toolbar_admin = (Toolbar) findViewById(R.id.toolbar_admin);
         batchesCardView = (CardView)  findViewById(R.id.batchesCardView);
-        lecturersCardView = (CardView)  findViewById(R.id.lecturersCardView);
+        lecturersCardView = (CardView)  findViewById(R.id.lecturerScheduleCardView);
         classroomsCardView = (CardView)  findViewById(R.id.classroomsCardView);
         modulesCardView = (CardView)  findViewById(R.id.modulesClassView);
+
+        batchLongCardView = (CardView) findViewById(R.id.batchLongCardView);
+        lecturerLongCardView = (CardView) findViewById(R.id.lecturerLongCardView);
+        classroomLongCardView = (CardView) findViewById(R.id.classroomLongCardView);
 
 
         setSupportActionBar(toolbar_admin);
@@ -55,6 +59,30 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        batchLongCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ViewBatchTimetableActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lecturerLongCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ViewLecturerTimetableActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        classroomLongCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), ViewClassroomTimetableActivity.class);
                 startActivity(intent);
             }
         });

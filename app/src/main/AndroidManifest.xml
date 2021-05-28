@@ -16,6 +16,12 @@
             android:name=".activity.LoginActivity">
         </activity>
         <activity
+            android:name=".activity.LecturerHomeActivity">
+        </activity>
+        <activity
+            android:name=".activity.ScheduleListActivity" android:noHistory="true">
+        </activity>
+        <activity
             android:name=".activity.AdminHomeActivity">
         </activity>
         <activity
@@ -31,10 +37,10 @@
             android:name=".activity.ModuleAddEditActivity">
         </activity>
         <activity
-            android:name=".activity.LecturerUserListActivity">
+            android:name=".activity.LecturerUserListActivity" android:noHistory="true">
         </activity>
         <activity
-            android:name=".activity.LecturerHomeActivity">
+            android:name=".activity.LecturerUserAddEditActivity">
         </activity>
         <activity
             android:name=".activity.BatchListActivity" android:noHistory="true">
@@ -44,6 +50,12 @@
         </activity>
         <activity
             android:name=".activity.ViewBatchTimetableActivity">
+        </activity>
+        <activity
+            android:name=".activity.ViewLecturerTimetableActivity">
+        </activity>
+        <activity
+            android:name=".activity.ViewClassroomTimetableActivity">
         </activity>
         <activity android:name=".activity.MainActivity">
             <intent-filter>

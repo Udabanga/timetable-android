@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class BatchTimetableAdapter extends RecyclerView.Adapter<BatchTimetableAdapter.ViewHolder>{
+public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder>{
     private Context context;
     private List<Schedule> scheduleList;
     private LayoutInflater layoutInflater;
@@ -27,7 +27,7 @@ public class BatchTimetableAdapter extends RecyclerView.Adapter<BatchTimetableAd
     SimpleDateFormat timeFormat=new SimpleDateFormat("HH:mm");
 
 
-    public BatchTimetableAdapter(Context context, List<Schedule> scheduleList) {
+    public ScheduleAdapter(Context context, List<Schedule> scheduleList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.scheduleList = scheduleList;

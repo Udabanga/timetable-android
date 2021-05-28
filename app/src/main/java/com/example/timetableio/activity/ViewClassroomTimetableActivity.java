@@ -53,27 +53,27 @@ import java.util.TimeZone;
 
 import static com.example.timetableio.api.API_BASE_URL.baseURL;
 
-public class ViewBatchTimetableActivity extends AppCompatActivity {
+public class ViewClassroomTimetableActivity extends AppCompatActivity {
     private List<Schedule> scheduleList;
-    private ArrayList<Batch> batchList;
+    private ArrayList<Classroom> classroomList;
     private RecyclerView recyclerView;
     private TimetableAdapter adapter;
     private Button datePickerButton, searchButton;
     private TextView selectDates;
-    private Spinner batchSpinner;
+    private Spinner classroomSpinner;
     private Long longStartDate, longEndDate;
-    private Batch selectedBatch;
+    private Classroom selectedClassroom;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_batch_schedule_student);
+        setContentView(R.layout.activity_view_classroom_schedule);
         recyclerView = findViewById(R.id.recyclerView);
         datePickerButton = findViewById(R.id.selectDateRangeButton);
         selectDates = findViewById(R.id.selectedDates);
-        batchSpinner= findViewById(R.id.spinner);
+        classroomSpinner= findViewById(R.id.spinner);
         searchButton = findViewById(R.id.searchButton);
 
-        requestBatchesDropdown();
+        requestClassroomDropdown();
         requestSchedules();
 
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("IST"));
@@ -112,7 +112,7 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
 
                 Search search= new Search();
 
-                search.setBatch(selectedBatch);
+                search.setClassroom(selectedClassroom);
 
                 try {
                     search.setStartDate(new SimpleDateFormat( "yyyy-MM-dd" ).parse( df2.format(startDate) ));
@@ -136,9 +136,9 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
 
         JSONObject obj = new JSONObject();
         try {
-            JSONObject batch = new JSONObject();
-            batch.put("id", selectedBatch.getId());
-            obj.put("batch", batch);
+            JSONObject classroom = new JSONObject();
+            classroom.put("id", selectedClassroom.getId());
+            obj.put("classroom", classroom);
             obj.put("startDate", search.getStartDate());
             obj.put("endDate", search.getEndDate());
 
@@ -150,10 +150,10 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
         jsonArray.put(obj);
 
 
-        Toast.makeText(ViewBatchTimetableActivity.this, obj.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ViewClassroomTimetableActivity.this, obj.toString(), Toast.LENGTH_SHORT).show();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                (Request.Method.POST, baseURL+"api/schedules/batch", jsonArray, new Response.Listener<JSONArray >() {
+                (Request.Method.POST, baseURL+"api/schedules/classroom", jsonArray, new Response.Listener<JSONArray >() {
 
                     @Override
                     public void onResponse(JSONArray response) {
@@ -180,7 +180,7 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
                                 Set<Batch> batchList = new Gson().fromJson(String.valueOf(scheduleObject.getJSONArray("batches")), new TypeToken<HashSet<Batch>>(){}.getType());
                                 schedule.setBatches(batchList);
                                 scheduleList.add(schedule);
-                                Toast.makeText(ViewBatchTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ViewClassroomTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
                             } catch (JSONException | ParseException e) {
                                 e.printStackTrace();
                             }
@@ -196,43 +196,43 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
                         Log.d("tag", "onErrorResponse" + error.getMessage());
-                        Toast.makeText(ViewBatchTimetableActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewClassroomTimetableActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(jsonArrayRequest);
 
 
     }
-    private void requestBatchesDropdown() {
+    private void requestClassroomDropdown() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, baseURL+"api/batches", null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, baseURL+"api/classrooms", null, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
-                batchList = new ArrayList<>();
+                classroomList = new ArrayList<>();
                 for(int i=0; i<response.length(); i++){
                     try {
-                        JSONObject batchObject = response.getJSONObject(i);
+                        JSONObject classroomObject = response.getJSONObject(i);
 
-                        Batch batch = new Batch();
-                        batch.setId(batchObject.getLong("id"));
-                        batch.setBatchCode(batchObject.getString("batchCode"));
-                        batch.setFaculty(batchObject.getString("faculty"));
-                        batch.setSemester(batchObject.getString("semester"));
-                        batch.setYear(Integer.parseInt(batchObject.getString("year")));
-                        batchList.add(batch);
+                        Classroom classroom = new Classroom();
+                        classroom.setId(classroomObject.getLong("id"));
+                        classroom.setBuilding(classroomObject.getString("building"));
+                        classroom.setFloor(classroomObject.getInt("floor"));
+                        classroom.setRoomNumber(classroomObject.getInt("roomNumber"));
+                        classroom.setType(classroomObject.getString("type"));
+                        classroomList.add(classroom);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    ArrayAdapter<Batch> batchSpinnerAdapter =  new ArrayAdapter<Batch>(ViewBatchTimetableActivity.this, android.R.layout.simple_spinner_item, batchList);
-                    batchSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    batchSpinner.setAdapter(batchSpinnerAdapter);
+                    ArrayAdapter<Classroom> classroomSpinnerAdapter =  new ArrayAdapter<Classroom>(ViewClassroomTimetableActivity.this, android.R.layout.simple_spinner_item, classroomList);
+                    classroomSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    classroomSpinner.setAdapter(classroomSpinnerAdapter);
 
-                    batchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    classroomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            selectedBatch = (Batch) batchSpinner.getSelectedItem();
+                            selectedClassroom = (Classroom) classroomSpinner.getSelectedItem();
                         }
 
                         @Override
@@ -281,7 +281,7 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
                         Set<Batch> batchList = new Gson().fromJson(String.valueOf(scheduleObject.getJSONArray("batches")), new TypeToken<HashSet<Batch>>(){}.getType());
                         schedule.setBatches(batchList);
                         scheduleList.add(schedule);
-                        Toast.makeText(ViewBatchTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewClassroomTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
                     } catch (JSONException | ParseException e) {
                         e.printStackTrace();
                     }

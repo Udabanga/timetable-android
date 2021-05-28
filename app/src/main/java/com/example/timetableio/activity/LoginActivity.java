@@ -20,18 +20,23 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.timetableio.R;
 import com.example.timetableio.payload.request.LoginRequest;
-import com.example.timetableio.api.API_BASE_URL;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.timetableio.api.API_BASE_URL.baseURL;
+
 public class LoginActivity extends AppCompatActivity {
     private Button cancelButton, loginButton;
     private EditText inputLoginEmail, inputLoginPassword;
-    public SharedPreferences sharedPreferences;
 
-    API_BASE_URL base = new API_BASE_URL();
+    public static final String SHARED_PREFERENCES = "shared_preferences" ;
+    public static final String EMAIL_KEY = "email";
+    public static final String ID_KEY = "id";
+    public SharedPreferences sharedPreferences;
+    public String prefEmail, prefID;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         inputLoginEmail = (EditText) findViewById(R.id.loginEmail);
         inputLoginPassword = (EditText) findViewById(R.id.loginPassword);
 
-        sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        SharedPreferences checkPreferences=getSharedPreferences("checkbox",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        prefEmail = sharedPreferences.getString(EMAIL_KEY, null);
+        prefID = sharedPreferences.getString(ID_KEY, null);
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                        (Request.Method.POST, "http://192.168.8.104:8080/api/auth/signin", obj, new Response.Listener<JSONObject>() {
+                        (Request.Method.POST, baseURL+ "api/auth/signin", obj, new Response.Listener<JSONObject>() {
 
                             @Override
                             public void onResponse(JSONObject response) {
@@ -87,13 +93,19 @@ public class LoginActivity extends AppCompatActivity {
                                         String username = response.getString("username");
                                         String email = response.getString("email");
                                         Long id = response.getLong("id");
+
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(EMAIL_KEY, email);
+                                        editor.putString(ID_KEY, Long.toString(id));
+                                        editor.apply();
+
                                         JSONArray roles = response.getJSONArray("roles");
                                         if(roles.toString().contains("ROLE_ADMIN")){
                                             //Redirect Admin
                                             Intent intent = new Intent(getBaseContext(), AdminHomeActivity.class);
                                             startActivity(intent);
                                         }
-                                        else if(roles.toString().contains("ROLE_MODERATOR")){
+                                        else if(roles.toString().contains("ROLE_LECTURER")){
                                             //Redirect Lecturer
                                             Intent intent = new Intent(getBaseContext(), LecturerHomeActivity.class);
                                             startActivity(intent);

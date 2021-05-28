@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="Schedule"
+            app:titleTextColor="@color/cardview_light_background"></androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/selectTimeRangeButton"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Date Range"
+        app:layout_constraintStart_toStartOf="@+id/appbar"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <TextView
+        android:id="@+id/selectedDates2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="        "
+        app:layout_constraintBottom_toBottomOf="@+id/selectedDateLabel2"
+        app:layout_constraintStart_toEndOf="@+id/selectedDateLabel2"
+        app:layout_constraintTop_toTopOf="@+id/selectedDateLabel2" />
+
+    <TextView
+        android:id="@+id/selectedDateLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Date Range"
+        app:layout_constraintStart_toStartOf="@+id/selectTimeRangeButton"
+        app:layout_constraintTop_toBottomOf="@+id/selectTimeRangeButton" />
+
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Create Schedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="397dp"
+        android:layout_height="545dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateLabel2" />
+
+    <!--        android:entries="@array/batch"-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<androidx.recyclerview.widget.RecyclerView-->
+    <!--android:id="@+id/studentBatchRecyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->

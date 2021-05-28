@@ -61,6 +61,7 @@ public class Batch {
 
     @Override
     public String toString() {
-        return Long.toString(id);
+        return batchCode;
+
     }
 }

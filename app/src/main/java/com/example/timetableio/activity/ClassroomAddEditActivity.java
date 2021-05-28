@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static android.content.ContentValues.TAG;
+import static com.example.timetableio.api.API_BASE_URL.baseURL;
 
 public class ClassroomAddEditActivity extends AppCompatActivity {
     private Button submitButton;
@@ -62,7 +63,7 @@ public class ClassroomAddEditActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, "http://192.168.8.104:8080/api/classrooms/" + classroomIDEdit,
+            StringRequest stringRequest = new StringRequest(Request.Method.DELETE, baseURL+"api/classrooms/" + classroomIDEdit,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -113,7 +114,7 @@ public class ClassroomAddEditActivity extends AppCompatActivity {
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.PUT, "http://192.168.8.104:8080/api/classrooms/"+ classroomIDEdit, obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.PUT, baseURL+ "api/classrooms/"+ classroomIDEdit, obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
@@ -158,7 +159,7 @@ public class ClassroomAddEditActivity extends AppCompatActivity {
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, "http://192.168.8.104:8080/api/classrooms", obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, baseURL+ "api/classrooms", obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {

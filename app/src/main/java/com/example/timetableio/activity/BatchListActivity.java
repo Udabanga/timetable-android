@@ -28,6 +28,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.timetableio.api.API_BASE_URL.baseURL;
+
 public class BatchListActivity extends AppCompatActivity {
     private Button addButton;
     private RecyclerView recyclerView;
@@ -59,7 +61,7 @@ public class BatchListActivity extends AppCompatActivity {
 
     private void requestBatches() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://192.168.8.104:8080/api/batches", null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, baseURL+"api/batches", null, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {

@@ -31,6 +31,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.example.timetableio.api.API_BASE_URL.baseURL;
+
 public class LecturerUserListActivity extends AppCompatActivity {
     private Button addButton;
     private RecyclerView recyclerView;
@@ -52,7 +54,7 @@ public class LecturerUserListActivity extends AppCompatActivity {
 
     private void requestUsers() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://192.168.8.104:8080/api/auth/users", null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest JSONArrayRequest = new JsonArrayRequest(Request.Method.GET, baseURL+"api/auth/users", null, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
