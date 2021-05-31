@@ -63,8 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         final RequestQueue queue = Volley.newRequestQueue(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 String email = inputLoginEmail.getText().toString();
@@ -84,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                         (Request.Method.POST, baseURL+ "api/auth/signin", obj, new Response.Listener<JSONObject>() {
-
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
@@ -103,12 +100,16 @@ public class LoginActivity extends AppCompatActivity {
                                         if(roles.toString().contains("ROLE_ADMIN")){
                                             //Redirect Admin
                                             Intent intent = new Intent(getBaseContext(), AdminHomeActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
+                                            finish();
                                         }
                                         else if(roles.toString().contains("ROLE_LECTURER")){
                                             //Redirect Lecturer
                                             Intent intent = new Intent(getBaseContext(), LecturerHomeActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);;
                                             startActivity(intent);
+                                            finish();
                                         }
                                         else {
                                             Toast.makeText(LoginActivity.this, "Error: Role not identified", Toast.LENGTH_SHORT).show();
@@ -120,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                             }
                         }, new Response.ErrorListener() {
 
@@ -131,15 +131,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 queue.add(jsonObjectRequest);
-
-//                if(email.equalsIgnoreCase("admin")){
-//                    Intent intent = new Intent(getBaseContext(), AdminHomeActivity.class);
-//                    startActivity(intent);
-//                }
-//                else if(email.equalsIgnoreCase("lecturer")){
-//                    Intent intent = new Intent(getBaseContext(), LecturerHomeActivity.class);
-//                    startActivity(intent);
-//                }
 
             }
         });

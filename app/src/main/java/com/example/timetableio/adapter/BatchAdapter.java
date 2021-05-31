@@ -44,7 +44,6 @@ public class BatchAdapter extends RecyclerView.Adapter<BatchAdapter.ViewHolder> 
         holder.faculty.setText(batchList.get(position).getFaculty());
         holder.semester.setText(batchList.get(position).getSemester());
         holder.year.setText(Integer.toString(batchList.get(position).getYear()));
-
     }
 
     @Override

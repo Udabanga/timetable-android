@@ -114,7 +114,6 @@ public class BatchAddEditActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -157,11 +156,10 @@ public class BatchAddEditActivity extends AppCompatActivity {
                     }
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.POST, baseURL+ "api/batches", obj, new Response.Listener<JSONObject>() {
+                            (Request.Method.POST, baseURL+"api/batches", obj, new Response.Listener<JSONObject>() {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(BatchAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), BatchListActivity.class);
                                     startActivity(intent);
                                     finish();

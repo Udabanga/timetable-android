@@ -119,7 +119,6 @@ public class LecturerUserAddEditActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(LecturerUserAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -159,7 +158,6 @@ public class LecturerUserAddEditActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(LecturerUserAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), LecturerUserListActivity.class);
                                     startActivity(intent);
                                     finish();

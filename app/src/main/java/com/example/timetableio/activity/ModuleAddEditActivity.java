@@ -95,7 +95,6 @@ public class ModuleAddEditActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(ModuleAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -131,7 +130,6 @@ public class ModuleAddEditActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(ModuleAddEditActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getBaseContext(), ModuleListActivity.class);
                                     startActivity(intent);
                                     finish();

@@ -1,15 +1,19 @@
 package com.example.timetableio.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.timetableio.activity.ModuleAddEditActivity;
 import com.example.timetableio.model.Schedule;
 import com.example.timetableio.R;
 import com.squareup.picasso.Picasso;
@@ -88,7 +92,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         return scheduleList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, PopupMenu.OnMenuItemClickListener {
 
         TextView date, startTime, endTime, classroom, module, user, batches;
         ImageView dateImage;
@@ -104,7 +108,51 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             batches = itemView.findViewById(R.id.batchListTextView);
             dateImage = itemView.findViewById(R.id.dayImageView);
 
-//            dateImage = itemView.findViewById(R.id.dayImageView);
+            itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            showPopupMenu(view);
+            return false;
+        }
+
+        public void showPopupMenu(View view){
+            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+            popupMenu.inflate(R.menu.popup_menu);
+            popupMenu.setOnMenuItemClickListener(this);
+            popupMenu.show();
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            Intent intent = new Intent(context, ModuleAddEditActivity.class);
+            switch (menuItem.getItemId()){
+                case (R.id.action_delete):
+
+                    intent.putExtra("SELECTION", "Delete");
+                    intent.putExtra("SCHEDULE_ID", String.valueOf(scheduleList.get(getAdapterPosition()).getId()));
+                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+
+                    return true;
+                case (R.id.action_edit):
+                    intent.putExtra("SELECTION", "Edit");
+                    intent.putExtra("SCHEDULE_ID", String.valueOf(scheduleList.get(getAdapterPosition()).getId()));
+                    intent.putExtra("SCHEDULE_DATE", String.valueOf(scheduleList.get(getAdapterPosition()).getDate()));
+                    intent.putExtra("SCHEDULE_START_TIME", String.valueOf(scheduleList.get(getAdapterPosition()).getStartTime()));
+                    intent.putExtra("SCHEDULE_END_TIME", String.valueOf(scheduleList.get(getAdapterPosition()).getEndTime()));
+                    intent.putExtra("SCHEDULE_CLASSROOM", String.valueOf(scheduleList.get(getAdapterPosition()).getClassroom().getId()));
+                    intent.putExtra("SCHEDULE_MODULE", String.valueOf(scheduleList.get(getAdapterPosition()).getModule().getId()));
+                    intent.putExtra("SCHEDULE_USER", String.valueOf(scheduleList.get(getAdapterPosition()).getUser().getId()));
+                    intent.putExtra("SCHEDULE_BATCHES", String.valueOf(scheduleList.get(getAdapterPosition()).getBatches()));
+
+                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

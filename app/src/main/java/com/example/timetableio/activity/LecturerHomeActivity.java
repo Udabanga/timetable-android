@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -45,6 +49,7 @@ public class LecturerHomeActivity extends AppCompatActivity {
     public SharedPreferences sharedPreferences;
     public String prefEmail, prefID;
 
+    private Toolbar toolbar;
     public TextView id, email, name;
     public CardView lecturerScheduleCard ,batchLongCardView, lecturerLongCardView, classroomLongCardView;
 
@@ -53,10 +58,20 @@ public class LecturerHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_lecturer);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         id = findViewById(R.id.idDisplay);
         email = findViewById(R.id.emailDisplay);
         name = findViewById(R.id.lecturerNameDisplay);
         lecturerScheduleCard = findViewById(R.id.lecturerScheduleCardView);
+
+        batchLongCardView = (CardView) findViewById(R.id.batchLongCardView);
+        lecturerLongCardView = (CardView) findViewById(R.id.lecturerLongCardView);
+        classroomLongCardView = (CardView) findViewById(R.id.classroomLongCardView);
+
+
+        setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -114,7 +129,6 @@ public class LecturerHomeActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(LecturerHomeActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
 
@@ -125,5 +139,23 @@ public class LecturerHomeActivity extends AppCompatActivity {
                     }
                 });
         queue.add(jsonObjectRequest);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.logout){
+            Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return true;
     }
 }

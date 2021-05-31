@@ -13,7 +13,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".activity.LoginActivity">
+            android:name=".activity.LoginActivity" >
         </activity>
         <activity
             android:name=".activity.LecturerHomeActivity">
@@ -21,6 +21,9 @@
         <activity
             android:name=".activity.ScheduleListActivity" android:noHistory="true">
         </activity>
+<!--        <activity-->
+<!--            android:name=".activity.ScheduleAddEditActivity">-->
+<!--        </activity>-->
         <activity
             android:name=".activity.AdminHomeActivity">
         </activity>

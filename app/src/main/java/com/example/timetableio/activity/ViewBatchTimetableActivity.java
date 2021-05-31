@@ -150,7 +150,6 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
         jsonArray.put(obj);
 
 
-        Toast.makeText(ViewBatchTimetableActivity.this, obj.toString(), Toast.LENGTH_SHORT).show();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
                 (Request.Method.POST, baseURL+"api/schedules/batch", jsonArray, new Response.Listener<JSONArray >() {
@@ -180,7 +179,6 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
                                 Set<Batch> batchList = new Gson().fromJson(String.valueOf(scheduleObject.getJSONArray("batches")), new TypeToken<HashSet<Batch>>(){}.getType());
                                 schedule.setBatches(batchList);
                                 scheduleList.add(schedule);
-                                Toast.makeText(ViewBatchTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
                             } catch (JSONException | ParseException e) {
                                 e.printStackTrace();
                             }
@@ -281,7 +279,6 @@ public class ViewBatchTimetableActivity extends AppCompatActivity {
                         Set<Batch> batchList = new Gson().fromJson(String.valueOf(scheduleObject.getJSONArray("batches")), new TypeToken<HashSet<Batch>>(){}.getType());
                         schedule.setBatches(batchList);
                         scheduleList.add(schedule);
-                        Toast.makeText(ViewBatchTimetableActivity.this, String.valueOf(scheduleObject.getJSONArray("batches")), Toast.LENGTH_SHORT).show();
                     } catch (JSONException | ParseException e) {
                         e.printStackTrace();
                     }
